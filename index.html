@@ -3,22 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kualiti Udara Taiping — IPU semasa</title>
+<title>IPU Taiping — Pemantauan Kualiti Udara</title>
 <meta name="description" content="Bacaan Indeks Pencemar Udara (IPU) semasa bagi Taiping, Perak, dikemas kini setiap jam dari portal APIMS Jabatan Alam Sekitar.">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <style>
 :root{
   --bg:#fbfbfa; --panel:#ffffff; --line:#e6e4df; --fg:#1f1e1c; --muted:#6b6862;
   --accent:#3d6b9e; --muted-bar:#c9c6c0; --grid:#efedea; --ref:#d4d1cb;
   --ok:#3f7d4e; --warn:#a9700f; --bad:#b1442c;
   --radius:10px; --gutter:20px;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#191917; --panel:#211f1d; --line:#35322e; --fg:#eceae5; --muted:#a09c95;
-    --accent:#7aa7d4; --muted-bar:#4a4641; --grid:#2b2825; --ref:#453f3a;
-    --ok:#74b182; --warn:#d6a34a; --bad:#e0775c;
-  }
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -118,15 +111,70 @@ footer{color:var(--muted); font-size:.8125rem; border-top:1px solid var(--line);
 footer a{color:inherit}
 .muat{color:var(--muted); font-size:.875rem; padding:24px 0; text-align:center}
 .ralat{color:var(--bad); font-size:.875rem}
+
+/* Reka bentuk IPU Taiping: cerah, minimalis dan responsif */
+:root{--bg:#f2f7fb;--panel:#fff;--line:#e2eaf2;--fg:#10233f;--muted:#60728a;--accent:#1682f5;--muted-bar:#d5e0eb;--grid:#eaf0f6;--ref:#f4a62a;--ok:#20a653;--warn:#d99a00;--bad:#d94b55;--radius:15px;--gutter:18px}
+html{scroll-behavior:smooth;scroll-padding-top:18px}
+body{background:linear-gradient(180deg,#eaf5ff 0,#f5f9fc 420px,#f3f7fa 100%);color:var(--fg)}
+.wrap{max-width:1440px;padding:0 22px 48px}
+.topbar{display:flex;align-items:center;gap:24px;min-height:76px;padding:12px 6px;border:0;margin:0;background:rgba(255,255,255,.92);position:relative;z-index:2}
+.brand{font-size:clamp(1.35rem,2vw,2rem);font-weight:800;letter-spacing:-.045em;color:#10233f;text-decoration:none;white-space:nowrap;margin-right:auto}
+.topbar nav{display:flex;align-items:center;gap:6px}
+.topbar nav a{color:#253954;text-decoration:none;font-size:.9rem;font-weight:600;padding:10px 13px;border-radius:9px}
+.topbar nav a:hover,.topbar nav a:focus-visible{background:#e8f3ff;color:#0878ed;outline:none}
+.kemas-kini{display:flex;align-items:center;gap:10px;padding:9px 13px;border-radius:12px;background:#f0f7ff;color:#14365e;min-width:190px}
+.clock{font-size:1.65rem;color:#1682f5;line-height:1}
+.kemas-kini strong,.kemas-kini small{display:block}.kemas-kini strong{font-size:.78rem}.kemas-kini small{font-size:.7rem;color:#64758c;margin-top:2px}
+.hero{min-height:245px;margin:0 -22px 18px;padding:36px 48px;display:flex;align-items:center;background-image:linear-gradient(90deg,rgba(7,28,49,.65),rgba(7,28,49,.22) 58%,rgba(7,28,49,.04)),url('assets/taiping-lake.jpg');background-size:cover;background-position:center 53%;border-radius:0 0 18px 18px;color:#fff;overflow:hidden}
+.hero-copy{max-width:700px;text-shadow:0 1px 8px rgba(0,0,0,.2)}
+.hero .eyebrow{font-size:.72rem;letter-spacing:.13em;font-weight:800;margin:0 0 8px;color:#d9fbe5}
+.hero h2{font-size:clamp(2rem,4vw,3.25rem);line-height:1.08;letter-spacing:-.04em;margin:0 0 10px;font-weight:800}
+.hero p:not(.eyebrow){font-size:clamp(1rem,2vw,1.25rem);font-weight:650;margin:0 0 7px}
+.hero small{font-size:.9rem;color:#eef7ff}
+.card{box-shadow:0 3px 14px rgba(29,68,104,.045);border-radius:15px;padding:20px;border-color:#e3ebf3;margin-bottom:16px}
+h2{letter-spacing:-.015em}
+#isi{display:block}
+#isi[hidden]{display:none}
+#isi>.card:first-child{border-top:3px solid #20a653;background:linear-gradient(110deg,#fff,#f8fffb)}
+.kini{align-items:center;gap:20px}
+.kini-num{font-size:clamp(3.5rem,7vw,5rem);color:#159447}
+.kini-status{display:inline-flex;align-items:center;border-radius:999px;padding:5px 15px;background:#e5f8eb;color:#16863e}
+.tiles{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.tile{border-radius:14px;box-shadow:0 3px 14px rgba(29,68,104,.035);border-color:#e3ebf3}
+.tile-label{font-size:.78rem}
+.tile-num{font-size:2rem;color:#10233f}
+.chart svg{max-width:100%}
+.jad th{z-index:1}
+.sek-kini{background:#f7fbff}
+footer{border-color:#dce7f1}
+@media(min-width:1000px){#isi{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 16px}#isi>.card:first-child{grid-column:span 4}#sekolah{grid-column:span 8}#isi>.tiles{grid-column:1/-1}#isi>#grafik{grid-column:span 7}#isi>#jam24{grid-column:span 5}#isi>.card:has(#c-harian){grid-column:span 6}#isi>#harian-jadual{grid-column:span 6}#isi>#perbandingan{grid-column:span 4}#isi>.card:has(#c-perak){grid-column:span 4}#isi>.card:has(#wx){grid-column:span 4}#isi>#maklumat{grid-column:1/-1}#isi>.tiles{margin-bottom:16px}}
+@media(max-width:999px){.wrap{padding:0 14px 36px}.topbar{flex-wrap:wrap;gap:10px;padding:14px 4px}.brand{width:100%}.topbar nav{order:3;width:100%;overflow-x:auto}.topbar nav a{white-space:nowrap;padding:8px 10px}.kemas-kini{position:absolute;right:4px;top:12px;min-width:0}.hero{margin:0 -14px 14px;padding:30px 24px;min-height:210px}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){:root{--gutter:12px}.wrap{padding:0 10px 30px}.topbar{min-height:unset;padding:12px 2px}.brand{font-size:1.5rem;padding-right:135px}.kemas-kini{top:12px;right:2px;padding:7px 8px;gap:6px}.kemas-kini small{max-width:110px;font-size:.62rem}.clock{font-size:1.25rem}.topbar nav{gap:2px}.topbar nav a{font-size:.78rem;padding:7px 9px}.hero{margin:0 -10px 12px;padding:25px 18px;min-height:190px;background-position:center}.hero .eyebrow{font-size:.62rem}.hero h2{font-size:2rem}.hero p:not(.eyebrow){font-size:1rem}.hero small{font-size:.78rem}.card{padding:15px;margin-bottom:12px}.kini-num{font-size:3.5rem}.tiles{gap:9px;margin-bottom:12px}.tile{padding:13px}.tile-num{font-size:1.55rem}.tile-label,.tile-note{font-size:.7rem}.sek-senarai li{font-size:.8rem;padding:8px 6px}.sek-julat{width:74px}.jad{font-size:.75rem}.chart{min-width:0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<header>
-  <h1>Kualiti Udara Taiping</h1>
-  <div class="sub">Indeks Pencemar Udara (IPU) · Stesen CA10A, Taiping, Perak · <span id="stamp">—</span></div>
+<header class="topbar">
+  <a class="brand" href="#utama" aria-label="IPU Taiping — Utama">IPU Taiping</a>
+  <nav aria-label="Navigasi utama">
+    <a href="#utama">Utama</a>
+    <a href="#grafik">Data &amp; Graf</a>
+    <a href="#perbandingan">Perbandingan</a>
+    <a href="#maklumat">Maklumat</a>
+  </nav>
+  <div class="kemas-kini"><span class="clock" aria-hidden="true">◷</span><span><strong>Kemas kini</strong><small id="stamp">—</small></span></div>
 </header>
+<section class="hero" id="utama" aria-label="Pengenalan IPU Taiping">
+  <div class="hero-copy">
+    <p class="eyebrow">PEMANTAUAN KUALITI UDARA</p>
+    <h2>Kualiti Udara Taiping</h2>
+    <p>Bacaan Indeks Pencemar Udara (IPU) semasa</p>
+    <small>Data daripada portal APIMS, Jabatan Alam Sekitar</small>
+  </div>
+</section>
 
 <div id="amaran" role="status">
   <span class="amaran-dot" aria-hidden="true"></span>
@@ -170,7 +218,7 @@ footer a{color:inherit}
     <div class="tile"><div class="tile-label">Jam tidak sihat</div><div class="tile-num" id="t-buruk">—</div><div class="tile-note" id="t-buruk-nota">—</div></div>
   </div>
 
-  <section class="card">
+  <section class="card" id="grafik">
     <h2>Bacaan setiap jam</h2>
     <p class="note">Tujuh hari terakhir. Garis putus menandakan ambang 50, 100 dan 150.</p>
     <div class="chart" id="c-jam"></div>
@@ -215,7 +263,7 @@ footer a{color:inherit}
     </div>
   </section>
 
-  <section class="card">
+  <section class="card" id="perbandingan">
     <h2>Bandingan stesen Perak</h2>
     <p class="note">Bacaan semasa kelima-lima stesen pemantauan di Perak. Taiping diwarnakan.</p>
     <div class="chart" id="c-perak"></div>
@@ -227,7 +275,7 @@ footer a{color:inherit}
     <div class="wx" id="wx"></div>
   </section>
 
-  <section class="card">
+  <section class="card" id="maklumat">
     <h2>Skala IPU</h2>
     <ul class="skala">
       <li><span class="sw" style="background:var(--ok)"></span>0–50 Baik</li>
@@ -245,7 +293,7 @@ footer a{color:inherit}
 
 <footer>
   <p>Sumber bacaan IPU: Sistem Pengurusan Indeks Pencemar Udara (APIMS), Jabatan Alam Sekitar — <a href="https://eqms.doe.gov.my/APIMS/main">eqms.doe.gov.my</a>. Ramalan cuaca: MET Malaysia melalui portal data terbuka kerajaan.</p>
-  <p>Halaman ini dikemas kini secara automatik setiap jam dan mungkin lewat beberapa minit berbanding portal rasmi. Untuk keputusan kesihatan yang penting, rujuk portal APIMS atau nasihat Kementerian Kesihatan.</p>
+  <p>Latar belakang menggunakan foto yang dibekalkan pemilik projek. Halaman ini dikemas kini secara automatik setiap jam dan mungkin lewat beberapa minit berbanding portal rasmi. Untuk keputusan kesihatan yang penting, rujuk portal APIMS atau nasihat Kementerian Kesihatan.</p>
 </footer>
 
 </div>
